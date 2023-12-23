@@ -20,74 +20,109 @@ app.use(requestLogger)
 app.use(express.static('build'))
 
 
-let notes = [
+let persons = [
   {
-    id: 1,
-    content: "HTML is easy",
-    important: true
-  },
-  {
-    id: 2,
-    content: "Browser can execute only JavaScript",
-    important: false
-  },
-  {
-    id: 3,
-    content: "GET and POST are the most important methods of HTTP protocol",
-    important: true
-  }
+      name: "Ada Lovelace",
+      number: "39-44-5323523",
+      id: 1
+    },
+    {
+      name: "sadasdas",
+      number: "11841814",
+      id: 4
+    },
+    {
+      name: "ashwag",
+      number: "8888888888888888888888888",
+      id: 6
+    },
+    {
+      name: "erick",
+      number: "78965",
+      id: 8
+    },
+    {
+      name: "monica",
+      number: "333333333",
+      id: 13
+    },
+    {
+      name: "marshall",
+      number: "111111111",
+      id: 15
+    },
+    {
+      name: "camel",
+      number: "45",
+      id: 16
+    },
+    {
+      name: "sadagv",
+      number: "51615665",
+      id: 19
+    },
+    {
+      name: "sdadaf",
+      number: "78",
+      id: 21
+    },
+    {
+      name: "haj",
+      number: "456523",
+      id: 22
+    }
 ]
 
 
 
-app.get('/api/notes', (req, res) => {
-  res.json(notes)
+app.get('/api/persons', (req, res) => {
+  res.json(persons)
 })
 
 const generateId = () => {
-  const maxId = notes.length > 0
-    ? Math.max(...notes.map(n => n.id))
+  const maxId = persons.length > 0
+    ? Math.max(...persons.map(n => n.id))
     : 0
   return maxId + 1
 }
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/persons', (request, response) => {
   const body = request.body
+  console.log(body)
 
-  if (!body.content) {
+  if (!body.name) {
     return response.status(400).json({ 
       error: 'content missing' 
     })
   }
 
-  const note = {
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
-    id: generateId(),
+  const person = {
+    name : body.name,
+    number : body.number,
+    id: generateId()
   }
 
-  notes = notes.concat(note)
+  persons = persons.concat(person)
 
-  response.json(note)
+  response.json(persons)
 })
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  const note = notes.find(note => note.id === id)
+  const person = persons.find(person => person.id === id)
 
-  if (note) {
-    response.json(note)
+  if (person) {
+    response.json(person)
   } else {
     response.status(404).end()
   }
 
-  response.json(note)
+  response.json(person)
 })
 
-app.delete('/api/notes/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  notes = notes.filter(note => note.id !== id)
+  persons = persons.filter(person => person.id !== id)
 
   response.status(204).end()
 })

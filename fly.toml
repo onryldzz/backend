@@ -1,13 +1,13 @@
-# fly.toml app configuration file generated for fspart3notes on 2023-12-21T08:51:25+03:00
+# fly.toml app configuration file generated for phonebookproject on 2023-12-23T05:24:01+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "fspart3notes"
-primary_region = "ams"
+app = "phonebookproject"
+primary_region = "cdg"
 
 [build]
-  builtin = "static"
+  
 [env]
   PORT = "3000" 
 
