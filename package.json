@@ -9,14 +9,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "@powershell Remove-Item -Recurse -Force build ; cd ../React Phonebook/phonebook ; npm run build ; cd ../../ ; Copy-Item -Recurse -Path React Phonebook/phonebook/build -Destination FSP3",
     "deploy": "fly deploy",
-    "deploy:full": "npm run build:ui && npm run deploy",    
+    "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "fly logs"
   },
   "author": "\"onur\"",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.0",
