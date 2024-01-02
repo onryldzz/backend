@@ -10,7 +10,8 @@
     "build:ui": "@powershell Remove-Item -Recurse -Force build ; cd ../FullStackPart2/part2 ; npm run build ; cd ../../ ; Copy-Item -Recurse -Path FullStackPart2/part2/build -Destination FSP3",
     "deploy": "fly deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
-    "logs:prod": "fly logs"
+    "logs:prod": "fly logs",
+    "lint": "eslint ."
   },
   "author": "\"onur\"",
   "license": "MIT",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.0",
+    "eslint": "^8.56.0",
     "nodemon": "^3.0.2"
   }
 }
